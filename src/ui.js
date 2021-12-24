@@ -28,6 +28,32 @@ class UI {
         })
         this.post.innerHTML = output;
     }
+    fillForm(data) {
+        this.bodyInput.value = data.body;
+        this.titleInput.value = data.title;
+        this.idInput.value = data.id;
+        this.changeFormState('edit');
+    }
+    changeFormState(state) {
+        if (state === 'edit') {
+            this.postSubmit.textContent = 'Update Post';
+            this.postSubmit.classList.replace('btn-primary', 'btn-warning');
+
+            const button = document.createElement('button');
+            button.className = 'post-cancel btn btn-secondary';
+            button.appendChild(document.createTextNode('Cancel Edit'))
+            const cardForm = document.querySelector('.card-form');
+            const formEnd = document.querySelector('.form-end');
+            cardForm.insertBefore(button, formEnd);
+        } else {
+            this.postSubmit.textContent = 'Post It';
+            this.postSubmit.classList.replace('btn-warning', 'btn-primary');
+            if (document.querySelector('.post-cancel')) {
+                document.querySelector('.post-cancel').remove();
+            }
+            this.clearInput();
+        }
+    }
     showAlert(alertText, status) {
         this.clearAlert();
         const alert = `<div class="alert alert-${status} alert-dismissible fade show my-3" role="alert">
@@ -42,6 +68,7 @@ class UI {
     clearInput() {
         this.titleInput.value = '';
         this.bodyInput.value = '';
+        this.idInput.value = '';
     }
     clearAlert() {
         let alert = document.querySelector('.alert');
