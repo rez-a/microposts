@@ -28,6 +28,20 @@ class UI {
         })
         this.post.innerHTML = output;
     }
+    showAlert(alertText, status) {
+        const alert = `<div class="alert alert-${status} alert-dismissible fade show my-3" role="alert">
+        ${alertText}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+        document.querySelector('.showalert').innerHTML = alert;
+        setTimeout(() => {
+            document.querySelector('.alert').remove()
+        }, 3000)
+    }
+    clearInput() {
+        this.titleInput.value = '';
+        this.bodyInput.value = '';
+    }
 }
 
 export const ui = new UI()
