@@ -29,6 +29,7 @@ class UI {
         this.post.innerHTML = output;
     }
     showAlert(alertText, status) {
+        this.clearAlert();
         const alert = `<div class="alert alert-${status} alert-dismissible fade show my-3" role="alert">
         ${alertText}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -41,6 +42,12 @@ class UI {
     clearInput() {
         this.titleInput.value = '';
         this.bodyInput.value = '';
+    }
+    clearAlert() {
+        let alert = document.querySelector('.alert');
+        if (alert) {
+            alert.remove()
+        }
     }
 }
 
